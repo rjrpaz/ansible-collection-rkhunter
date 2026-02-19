@@ -34,6 +34,12 @@ Update the rkhunter database when you have expected changes (like after system u
 ansible-playbook -u username -i inventory playbooks/update_rkhunter.yml -e "update=yes" --limit 'server.example.com'
 ```
 
+or using the dedicated variable:
+
+```bash
+ansible-playbook -u username -i inventory playbooks/update_rkhunter.yml -e "rkhunter_update_status=yes" --limit 'server.example.com'
+```
+
 ## Advanced Usage
 
 ### Custom Playbook
@@ -43,6 +49,33 @@ Create your own playbook with the rkhunter role:
 ```yaml
 ---
 - name: Custom rkhunter management
+  hosts: webservers
+  become: true
+  vars:
+    rkhunter_update_status: "no"
+
+  tasks:
+    - name: Check rkhunter status
+      ansible.builtin.include_role:
+        name: rjrpaz.rkhunter.rkhunter
+      tags: check
+
+    - name: Update database if needed
+      ansible.builtin.include_role:
+        name: rjrpaz.rkhunter.rkhunter
+      vars:
+        rkhunter_update_status: "yes"
+      tags: update
+      when: rkhunter_update_needed | default(false)
+```
+
+### Using the legacy 'update' variable
+
+For backwards compatibility, you can also use the `update` variable:
+
+```yaml
+---
+- name: Custom rkhunter management (legacy)
   hosts: webservers
   become: true
   vars:
