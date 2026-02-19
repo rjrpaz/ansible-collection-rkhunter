@@ -21,7 +21,7 @@ Instead of copying workflows to each collection repository, we reference the wor
 ```yaml
 jobs:
   call-ci-workflow:
-    uses: rjrpaz/ansible-collection-template/.github/workflows/ci.yml@split-workflows
+    uses: rjrpaz/ansible-collection-template/.github/workflows/ci.yml@main
     secrets: inherit
 ```
 
@@ -40,7 +40,7 @@ jobs:
 ```yaml
 jobs:
   lint:
-    uses: rjrpaz/ansible-collection-template/.github/workflows/lint-only.yml@split-workflows
+    uses: rjrpaz/ansible-collection-template/.github/workflows/lint-only.yml@main
 ```
 
 ### 3. Test Only (`test.yml`)
@@ -51,7 +51,7 @@ jobs:
 ```yaml
 jobs:
   test:
-    uses: rjrpaz/ansible-collection-template/.github/workflows/test-only.yml@split-workflows
+    uses: rjrpaz/ansible-collection-template/.github/workflows/test-only.yml@main
 ```
 
 ### 4. Release (`release.yml`)
@@ -62,7 +62,7 @@ jobs:
 ```yaml
 jobs:
   release:
-    uses: rjrpaz/ansible-collection-template/.github/workflows/release.yml@split-workflows
+    uses: rjrpaz/ansible-collection-template/.github/workflows/release.yml@main
     secrets: inherit
 ```
 
@@ -99,7 +99,7 @@ on:
 
 jobs:
   call-ci-workflow:
-    uses: rjrpaz/ansible-collection-template/.github/workflows/ci.yml@split-workflows
+    uses: rjrpaz/ansible-collection-template/.github/workflows/ci.yml@main
     secrets: inherit
 
   custom-security-scan:
@@ -125,7 +125,7 @@ When the template repository workflows are updated:
 If you get a "workflow not found" error, ensure:
 - The workflow exists in the template repository
 - The path and filename are correct
-- The branch reference (`@split-workflows`) is correct
+- The branch reference (`@main`) is correct
 
 ### Permission Issues
 If workflows fail with permission errors:
@@ -133,10 +133,9 @@ If workflows fail with permission errors:
 - Verify required secrets are configured in the repository settings
 
 ### Version Pinning
-For production use, consider pinning to specific versions instead of `@split-workflows`:
+For production use, consider pinning to specific versions instead of `@main`:
 
 ```yaml
 uses: rjrpaz/ansible-collection-template/.github/workflows/ci.yml@v1.0.0
 ```
 
-**Note**: Currently using `@split-workflows` branch for testing. Once tested and stable, these references should be updated to `@main`.

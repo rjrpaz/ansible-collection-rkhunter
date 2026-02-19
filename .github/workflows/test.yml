@@ -7,4 +7,4 @@ on: # yamllint disable-line rule:truthy
 jobs:
   test:
     name: 'Call Test from Template'
-    uses: rjrpaz/ansible-collection-template/.github/workflows/test-only.yml@split-workflows
+    uses: rjrpaz/ansible-collection-template/.github/workflows/test-only.yml@main
