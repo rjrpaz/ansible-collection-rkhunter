@@ -1,0 +1,13 @@
+---
+name: 'CI/CD Pipeline'
+
+on: # yamllint disable-line rule:truthy
+  pull_request:
+  push:
+  workflow_dispatch: {}
+
+jobs:
+  call-ci-workflow:
+    name: 'Call CI/CD from Template'
+    uses: rjrpaz/ansible-collection-template/.github/workflows/ci.yml@split-workflows
+    secrets: inherit

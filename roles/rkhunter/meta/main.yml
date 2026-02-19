@@ -1,0 +1,35 @@
+---
+galaxy_info:
+  author: Roberto
+  description: Ansible role for managing rkhunter (Rootkit Hunter) configuration and updates
+  company: PinpoiNTE
+  role_name: rkhunter
+  namespace: rjrpaz
+
+  license: MIT
+
+  min_ansible_version: "2.15"
+
+  platforms:
+    - name: EL
+      versions:
+        - "8"
+        - "9"
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+    - name: Debian
+      versions:
+        - bullseye
+        - bookworm
+
+  galaxy_tags:
+    - security
+    - monitoring
+    - rkhunter
+    - rootkit
+    - intrusion
+    - detection
+
+dependencies: []

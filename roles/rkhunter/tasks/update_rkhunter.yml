@@ -1,0 +1,4 @@
+- name: "Update rkhunter status database"
+  ansible.builtin.command: "rkhunter --propupd"
+  become: true
+  changed_when: false

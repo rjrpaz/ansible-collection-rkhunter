@@ -1,0 +1,9 @@
+---
+- name: Playbook to get/set status from rkhunter
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Get/set status from rkhunter
+      ansible.builtin.include_role:
+        name: rjrpaz.rkhunter.rkhunter

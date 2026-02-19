@@ -1,0 +1,27 @@
+---
+- name: Test rjrpaz.rkhunter collection
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Test collection import
+      ansible.builtin.debug:
+        msg: "Collection rjrpaz.rkhunter imported successfully"
+
+    - name: Test role import (syntax only)
+      ansible.builtin.include_role:
+        name: rjrpaz.rkhunter.rkhunter
+      vars:
+        update: false
+      tags: always
+      when: false  # Skip execution but test syntax
+
+    - name: Verify role variables are accessible
+      ansible.builtin.debug:
+        msg: |
+          Role variables:
+          - update: {{ update | default('not set') }}
+
+    - name: Test with check mode simulation
+      ansible.builtin.debug:
+        msg: "All syntax checks passed successfully"

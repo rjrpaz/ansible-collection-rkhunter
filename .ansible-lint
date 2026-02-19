@@ -1,0 +1,24 @@
+---
+# ansible-lint configuration
+profile: production
+
+# Exclude specific files or directories
+exclude_paths:
+  - .cache/
+  - .github/
+  - __pycache__/
+  - .pytest_cache/
+
+# Skip specific rules if needed
+skip_list: []
+
+# Use FQCN for all modules
+use_default_rules: true
+
+# Warn about deprecated features
+warn_list:
+  - package-latest
+  - risky-file-permissions
+
+# Enable offline mode for faster linting
+offline: false

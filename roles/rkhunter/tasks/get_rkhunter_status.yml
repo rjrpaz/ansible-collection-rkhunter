@@ -1,0 +1,11 @@
+- name: "Get rkhunter status"
+  ansible.builtin.command: "/usr/bin/rkhunter --checkall --skip-keypress --nocolors --quiet --appendlog --cronjob --nocolors --novl --report-warnings-only"
+  become: true
+  changed_when: false
+  register: rkhunter_status
+  failed_when: rkhunter_status.rc != 0 and rkhunter_status.rc != 1
+
+- name: "Print rkhunter status"
+  ansible.builtin.debug:
+    msg: "{{ rkhunter_status.stdout }}"
+  when: rkhunter_status.stdout != ""
