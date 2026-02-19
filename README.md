@@ -50,7 +50,7 @@ Use the fully qualified collection name (FQCN) as recommended:
         name: rjrpaz.rkhunter.rkhunter
 ```
 
-#### Update rkhunter database
+#### Update rkhunter database (Method 1: using update variable)
 
 ```yaml
 ---
@@ -65,6 +65,21 @@ Use the fully qualified collection name (FQCN) as recommended:
         update: true
 ```
 
+#### Update rkhunter database (Method 2: using rkhunter_update_status)
+
+```yaml
+---
+- name: Update rkhunter database
+  hosts: all
+  become: true
+  vars:
+    rkhunter_update_status: "yes"
+  tasks:
+    - name: Update rkhunter status database
+      ansible.builtin.include_role:
+        name: rjrpaz.rkhunter.rkhunter
+```
+
 ## Requirements
 
 - Ansible 5.0+ or ansible-core 2.15+
@@ -73,13 +88,35 @@ Use the fully qualified collection name (FQCN) as recommended:
 
 ## Role Variables
 
-Available variables are listed below, along with default values:
+Available variables are listed below, along with default values (see `roles/rkhunter/defaults/main.yml`):
 
 ```yaml
-# Control whether to update the rkhunter database
-# Default: false (only check status)
-update: false
+# Control rkhunter operation mode
+# When set to "no" (default): Only check rkhunter status and display results
+# When set to "yes": Update rkhunter database after status check if warnings found
+rkhunter_update_status: "no"
+
+# Alternative variable name for backwards compatibility
+# This variable is used when calling the role with the 'update' parameter
+update: false  # Only check status (default)
+update: true   # Update database if warnings found
 ```
+
+### Variable Usage
+
+The role supports two ways to control its behavior:
+
+1. **Using `rkhunter_update_status`** (recommended):
+   ```yaml
+   rkhunter_update_status: "no"   # Only check status
+   rkhunter_update_status: "yes"  # Update database if warnings found
+   ```
+
+2. **Using `update`** (backwards compatibility):
+   ```yaml
+   update: false  # Only check status
+   update: true   # Update database if warnings found
+   ```
 
 ## Supported Platforms
 

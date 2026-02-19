@@ -14,7 +14,7 @@
   ansible.builtin.include_tasks: get_rkhunter_status.yml
 
 - name: "Update rkhunter database if selected"
-  when: rkhunter_status.stdout != "" and update_status | bool
+  when: rkhunter_status.stdout != "" and rkhunter_update_status | bool
   block:
     - name: "Update rkhunter database"
       ansible.builtin.include_tasks: update_rkhunter.yml

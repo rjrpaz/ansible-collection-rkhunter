@@ -1,2 +1,12 @@
 ---
 # defaults file for roles/rkhunter
+
+# Control rkhunter operation mode
+# When set to "no" (default): Only check rkhunter status and display results
+# When set to "yes": Update rkhunter database after status check if warnings found
+rkhunter_update_status: "no"
+
+# Alternative variable name for backwards compatibility
+# This variable is used when calling the role with the 'update' parameter
+# update: false  # Only check status (default)
+# update: true   # Update database if warnings found
