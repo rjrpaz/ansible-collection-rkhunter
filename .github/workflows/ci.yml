@@ -9,5 +9,5 @@ on: # yamllint disable-line rule:truthy
 jobs:
   call-ci-workflow:
     name: 'Call CI/CD from Template'
-    uses: rjrpaz/ansible-collection-template/.github/workflows/ci.yml@split-workflows
+    uses: rjrpaz/ansible-collection-template/.github/workflows/ci.yml@main
     secrets: inherit
