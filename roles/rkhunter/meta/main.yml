@@ -2,7 +2,7 @@
 galaxy_info:
   author: Roberto
   description: Ansible role for managing rkhunter (Rootkit Hunter) configuration and updates
-  company: PinpoiNTE
+  company: freelance
   role_name: rkhunter
   namespace: rjrpaz
 
